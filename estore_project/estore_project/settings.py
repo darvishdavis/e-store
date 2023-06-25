@@ -63,6 +63,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'estore_app1.context_processors.category_links',
             ],
         },
     },
@@ -120,6 +121,11 @@ USE_TZ = True
 STATIC_URL = '/static_files/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_files')]
 STATIC_ROOT = "D:\Inmakes_python\python_django\django\e-store\estore_project\static_assets"
+
+
+# dynamic files
+MEDIA_URL = '/media_files/'
+MEDIA_ROOT = "D:\Inmakes_python\python_django\django\e-store\estore_project\media_assets"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -6,22 +6,29 @@
     <meta name="description" content="{% block description %} {% endblock %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> {% block title %} {% endblock%} </title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+
 </head>
 <body>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<div class="container-fluid">
+    <div class="row">
+        {% include 'header.html' %}
+    </div>
+    <div class="row">
+        {% include 'nav.html' %}
+    </div>
+    <div class="container-fluid overflow-hidden">
+        {% block content %}
+        {% endblock %}
+    </div>
 
-<div>
-    {% include 'header.html' %}
+    {% include 'footer.html' %}
 </div>
-<div>
-    {% include 'nav.html' %}
-</div>
-<div>
-    {% block content %}
-    {% endblock %}
-</div>
-<div>
-{% include 'footer.html' %}
-</div>
+
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 </body>
 </html>

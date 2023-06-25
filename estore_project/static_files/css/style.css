@@ -1,0 +1,45 @@
+body{
+margin:0px;
+font-family: 'Roboto Condensed', sans-serif;
+}
+
+.nav-item{
+font-size:15px;
+text-transform: uppercase;
+}
+
+.dropdown-item{
+font-size:15px;
+text-transform: lowercase;
+}
+
+.dropdown-menu{
+font-size:15px;
+background-color: #ff6666;
+}
+
+.footer{
+background-color: #ff6666;
+height:100%;
+width:100%;
+padding:1%
+
+}
+
+/* category */
+
+.center {
+  display: block;
+  margin-left: 25%;
+  width: 50%;
+  height: 75%;
+}
+
+.card{                        /* common to all cards */
+background-color: #ffe6e6;
+}
+
+
+
+
+

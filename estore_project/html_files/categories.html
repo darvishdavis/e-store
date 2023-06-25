@@ -1,10 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'home.html' %}
+{% load static %}
+{% if categories %}
+    {% block title %} {{categories.name}}+ Spot {% endblock%}
+{% else %}
+    <title>fresh-chase</title>
+{% endif %}
+{% block content %}
+    <div class="">
+            {% if categories %}
+            <div class="col 12">
+                <img class="center" src="{{categories.image.url}}" alt="{{categories.name}}"> <br>
+            </div>
+            {% endif %}
+            <div class="col 12">
+                <br><p class="text-center text-uppercase fw-bold ">THESE ARE THE PRODUCTS UNDER {{categories.name}}...............</p>
+            </div>
+                <div>
+                    {% for i in products %}
+                        <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-6 float-start m-2" style="width: 12rem;">
+                            <a href="{{ i.get_url }}"><img src="{{ i.image.url }}" class="card-img-top" alt="{{ i.name}}"></a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ i.name}}</h5>
+                                <p class="card-text">Rs.{{ i.price}}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+    </div>
+    {% endblock%}
