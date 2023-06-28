@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
         <li class="nav-item ">
-          <a class="nav-link active" aria-current="page" href="{% url 'estore_app1:home' %}">Home</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'estore_app1:home' %}"><i class="fa-solid fa-house"></i></a>
         </li>
 
           {% for i in c_links %}
@@ -26,13 +26,14 @@
           {% endfor %}
 
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control border border-primary" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-sm" type="submit">Search</button>
+      <form class="d-flex" role="search" action="{% url 'estore_search:search_view' %}" method="get">
+        {% csrf_token %}
+        <input class="form-control border border-primary" type="search" placeholder="Search" aria-label="Search" name="search_value">
+        <button class="btn btn-sm" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
       <ul class="navbar-nav mb-lg-0 ">
       <li class="nav-item ">
-        <a class="nav-link " aria-current="page" href=""><b>Your Bag</b></a>
+        <a class="nav-link " aria-current="page" href=""><b><i class="fa-solid fa-bag-shopping"></i></b></a>
       </li>
       </ul>
     </div>
