@@ -24,12 +24,14 @@
     </div><br>
 
 
-<!--    <div class="col-12 float-end  text-center">-->
-<!--        {% if pages.num_pages > 1 %}-->
-<!--            {% for i in pages.page_range %}-->
-<!--                <a href="?sheet={{i}} " class=" btn btn-light {% if products.number ==  i %}active{% endif %}">{{ i }}</a>-->
-<!--            {% endfor %}-->
-<!--        {% endif %}-->
-<!--    </div>-->
+{% comment %}
+    <div class="col-12 float-end  text-center">
+        {% if pages.num_pages > 1 %}
+            {% for i in pages.page_range %}
+                <a href="?sheet={{i}} " class=" btn btn-light {% if products.number ==  i %}active{% endif %}">{{ i }}</a>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endcomment %}
 
 {% endblock %}

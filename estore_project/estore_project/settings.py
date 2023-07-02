@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'estore_app1',
     'estore_search',
+    'estore_cart',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

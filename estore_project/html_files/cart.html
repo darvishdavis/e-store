@@ -1,0 +1,66 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block metadescription %}
+this is the cart page
+{% endblock %}
+
+{% block title %}
+CART
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% if not items %}
+        <div class="text-center">
+            <h5>your bag feels lightweight. please go for your needs <br> <a class="btn btn-primary" href=" {% url 'estore_app1:home' %}">here</a></h5>
+        </div>
+    {% else %}
+        <div class=" col-12 col-lg-6 ">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                    <th colspan="2"> YOUR CART </th><hr>
+                    </tr>
+                </thead>
+                <tbody class="t-body">
+                    {% for i in items%}
+                        <tr>
+                            <td> <img class="cart_image" src="{{i.product.image.url}}" alt="{{i.product.name}}" style="width:10rem;height:10rem;"></td>
+                            <td><b>{{i.product.name}} </b><br> <p class="text-sm">{{i.product.description}}</p> Rs.{{i.product.price}} <br>Offer : {{i.product.offer}}% <br>Quantity : {{i.quantity}}<br>
+                            <div class="row">
+                                <hr>
+                                <div class="col-4">
+                                <a href="{% url 'estore_cart:add_cart' i.product.id %}" class="d-flex justify-content-start"><i class="fa-solid fa-plus"></i></a>
+                                </div>
+                                <div class="col-4">
+                                <a href="" class="d-flex justify-content-center" ><i class="fa-solid fa-minus"></i></a>
+                                </div>
+                                <div class="col-4">
+                                <a href="" class="d-flex justify-content-end" ><i class="fa-solid fa-trash"></i></a>
+                                </div>
+
+                            </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class=" col-12 col-lg-6 p-2">
+            <h6 class="text-center fw-bold">PAYMENT PROCESS</h6>
+            <div class="p-5 ">
+            <div class="m-3 d-flex justify-content-center"><a class="btn btn-primary" href="">login</a><br></div>
+            <div class="m-3 d-flex justify-content-center"><a class="btn btn-primary" href="">delivery address</a></div>
+            <div class="m-3 d-flex justify-content-center"><a class="btn btn-primary" href="">order details</a></div>
+            <div class="m-3 d-flex justify-content-center"><a class="btn btn-primary" href="">payment option</a></div>
+            </div>
+            <div>
+                <p class="text-center">Grand Total :Rs.{{total}} <br>Net Quantity : {{counter}}</p>
+            </div>
+
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -18,7 +18,7 @@
             <p class="card-text">Offer: {{ details.offer }}%&emsp13;&emsp13;</p>
             <p class="card-text">Rating: {{ details.rating }}</p>
             {% if details.stock > 0 %}
-                <p class="card-text">In stock: {{ details.stock }} <a href="">ADD TO CART</a> </p>
+                <p class="card-text">In stock: {{ details.stock }} <a href="{% url 'estore_cart:add_cart' details.id %}">ADD TO CART</a> </p>
             {% else %}
                 <b>Out of stock </b>
             {% endif %}
