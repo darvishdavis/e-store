@@ -7,13 +7,17 @@
 {% endif %}
 {% block content %}
             {% if categories %}
-            <div class="col-12">
-                <img class="center" src="{{categories.image.url}}" alt="{{categories.name}}"> <br>
-            </div>
+                <div class="col-12">
+                    <img class="center" src="{{categories.image.url}}" alt="{{categories.name}}"> <br>
+                </div>
+                <div class="col-12">
+                    <br><p class="text-center text-uppercase fw-bold ">THESE ARE THE PRODUCTS UNDER {{categories.name}}...............</p>
+                </div>
+            {% else %}
+                <div class="col-12">
+                    <br><p class="text-center text-uppercase fw-bold ">THESE ARE THE PRODUCT COLLECTION THAT WE PRESENT BEFORE YOU...............</p>
+                </div>
             {% endif %}
-            <div class="col-12">
-                <br><p class="text-center text-uppercase fw-bold ">THESE ARE THE PRODUCTS UNDER {{categories.name}}...............</p>
-            </div>
             <div>
                 {% for i in products %}
                     <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-6 float-start m-2" style="width: 12rem;">
@@ -33,4 +37,5 @@
                     {% endfor %}
                 {% endif %}
             </div>
+
     {% endblock%}

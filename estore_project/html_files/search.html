@@ -5,33 +5,36 @@
 
 {% block content %}
     <div class="col-12">
-        <br><p class="text-center fw-bold ">YOU HAVE SEARCHED FOR  {{ search_query }} </p>
+        <br><p class="text-center fw-bold ">YOU HAVE SEARCHED FOR  ({{ search_query }}) </p>
     </div>
     <div>
-        {% for i in search_value %}
-            <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-6 float-start m-2" style="width: 12rem;">
-                <a href="{{ i.get_url }}"><img src="{{ i.image.url }}" class="card-img-top" alt="{{ i.name}}"></a>
-                <div class="card-body">
-                    <h5 class="card-title">{{ i.name}}</h5>
-                    <p class="card-text">Rs.{{ i.price}}</p>
+        {% if search_result %}
+            {% for i in search_result %}
+                <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-6 float-start m-2" style="width: 12rem;">
+                    <a href="{{ i.get_url }}"><img src="{{ i.image.url }}" class="card-img-top" alt="{{ i.name}}"></a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.name}}</h5>
+                        <p class="card-text">Rs.{{ i.price}}</p>
+                    </div>
                 </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <br><p class="text-center fw-bold ">WE ARE EXTREMELY SORRY FOR THE TROUBLE MADE. <br> PLEASE CROSSCHECK THE SPELLING AND TRY AGAIN. </p>
             </div>
-            {% empty %}
-                <div class="col-12">
-                    <br><p class="text-center fw-bold ">WE ARE EXTREMELY SORRY FOR THE TROUBLE MADE. <br> PLEASE CROSSCHECK THE SPELLING AND TRY AGAIN. </p>
-                </div>
-        {% endfor %}
+        {% endif %}
     </div><br>
-
-
 {% comment %}
     <div class="col-12 float-end  text-center">
         {% if pages.num_pages > 1 %}
             {% for i in pages.page_range %}
-                <a href="?sheet={{i}} " class=" btn btn-light {% if products.number ==  i %}active{% endif %}">{{ i }}</a>
+                <a href="?{{i}} " class=" btn btn-light {% if search_result.number ==  i %}active{% endif %}">{{ i }}</a>
             {% endfor %}
         {% endif %}
     </div>
 {% endcomment %}
+
+
+
 
 {% endblock %}

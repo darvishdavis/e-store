@@ -42,6 +42,8 @@ class Product(models.Model):
     def get_url(self):
         return reverse('estore_app1:product', args=[self.category.slug, self.slug])
 
+    def get_absolute_url(self):
+        return reverse('estore_search:search_view')
 
     def __str__(self):
         return '{}' .format(self.name)

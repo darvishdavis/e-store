@@ -23,23 +23,34 @@ CART
                     </tr>
                 </thead>
                 <tbody class="t-body">
-                    {% for i in items%}
+                    {% for i in items %}
                         <tr>
-                            <td> <img class="cart_image" src="{{i.product.image.url}}" alt="{{i.product.name}}" style="width:10rem;height:10rem;"></td>
+                            <td><a href="{{ i.product.get_url }}"><img class="cart_image" src="{{i.product.image.url}}" alt="{{i.product.name}}" style="width:10rem;height:10rem;"></a> </td>
                             <td><b>{{i.product.name}} </b><br> <p class="text-sm">{{i.product.description}}</p> Rs.{{i.product.price}} <br>Offer : {{i.product.offer}}% <br>Quantity : {{i.quantity}}<br>
-                            <div class="row">
-                                <hr>
-                                <div class="col-4">
-                                <a href="{% url 'estore_cart:add_cart' i.product.id %}" class="d-flex justify-content-start"><i class="fa-solid fa-plus"></i></a>
+                            {% if i.quantity <= i.product.stock %}
+                                <div class="row">
+                                    <hr>
+                                    <div class="col-4">
+                                    <a href="{% url 'estore_cart:add_cart' i.product.id %}" class="d-flex justify-content-center btn btn-secondary"><i class="fa-solid fa-plus"></i></a>
+                                    </div>
+                                    <div class="col-4">
+                                    <a href="{% url 'estore_cart:delete_onebyone' i.product.id %}" class="d-flex justify-content-center btn btn-secondary" ><i class="fa-solid fa-minus"></i></a>
+                                    </div>
+                                    <div class="col-4">
+                                    <a href="{% url 'estore_cart:delete_all' i.product.id %}" class="d-flex justify-content-center btn btn-secondary" ><i class="fa-solid fa-trash"></i></a>
+                                    </div>
                                 </div>
-                                <div class="col-4">
-                                <a href="" class="d-flex justify-content-center" ><i class="fa-solid fa-minus"></i></a>
+                            {% else %}
+                                <div class="row">
+                                    <hr>
+                                    <div class="col-6">
+                                    <a href="{% url 'estore_cart:delete_onebyone' i.product.id %}" class="d-flex justify-content-center btn btn-secondary" ><i class="fa-solid fa-minus"></i></a>
+                                    </div>
+                                    <div class="col-6">
+                                    <a href="{% url 'estore_cart:delete_all' i.product.id %}" class="d-flex justify-content-center btn btn-secondary" ><i class="fa-solid fa-trash"></i></a>
+                                    </div>
                                 </div>
-                                <div class="col-4">
-                                <a href="" class="d-flex justify-content-end" ><i class="fa-solid fa-trash"></i></a>
-                                </div>
-
-                            </div>
+                            {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
@@ -48,17 +59,23 @@ CART
 
         </div>
 
-        <div class=" col-12 col-lg-6 p-2">
-            <h6 class="text-center fw-bold">PAYMENT PROCESS</h6>
+        <div class=" col-12 col-lg-6 ">
+            <hr>
+            <h6 class="text-center fw-bold ">PAYMENT PROCESS</h6>
+            <hr class="m-3">
             <div class="p-5 ">
-            <div class="m-3 d-flex justify-content-center"><a class="btn btn-primary" href="">login</a><br></div>
-            <div class="m-3 d-flex justify-content-center"><a class="btn btn-primary" href="">delivery address</a></div>
-            <div class="m-3 d-flex justify-content-center"><a class="btn btn-primary" href="">order details</a></div>
-            <div class="m-3 d-flex justify-content-center"><a class="btn btn-primary" href="">payment option</a></div>
+            <p class="text-center">HEY...! PLEASE REVIEW YOUR CART. I THINK YOU FORGOT SOMETHING . </p>
+            </div>
+            <div>
+                <div class=" d-flex justify-content-center">
+                    <a class="btn btn-primary justify-content-center m-3 " href="{% url 'estore_app1:home' %}">CONTINUE SHOPPING</a>
+                    <a class="btn btn-primary justify-content-center m-3 " href="{% url 'estore_app1:home' %}">MAKE PAYMENT</a>
+                </div>
             </div>
             <div>
                 <p class="text-center">Grand Total :Rs.{{total}} <br>Net Quantity : {{counter}}</p>
             </div>
+
 
         </div>
     {% endif %}

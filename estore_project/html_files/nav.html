@@ -11,29 +11,31 @@
         </li>
 
           {% for i in c_links %}
-            <li class="nav-item dropdown {% if 'estore_app1' in request.path %} active {% endif %}">
-              <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <li class="nav-item dropdown {% if request.path %} active {% endif %}">
+              <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown">
                 {{ i.name }}
               </a>
               <ul class="dropdown-menu">
                  <li><a class="dropdown-item" href="{{ i.get_url}}">{{ i.name }}</a></li>
                  <li><hr class="dropdown-divider"></li>
-                {% for j in p_links %}
-                <li><a class="dropdown-item" href="{{ j.get_url}}">{{ j.name }}</a></li>
+                {% for p in p_links %}
+                  {% if p.category == i %}
+                      <li><a class="dropdown-item" href="{{ p.get_url}}">{{ p.name }}</a></li>
+                  {% endif %}
                 {% endfor %}
               </ul>
             </li>
           {% endfor %}
 
       </ul>
-      <form class="d-flex" role="search" action="{% url 'estore_search:search_view' %}" method="get">
-        {% csrf_token %}
-        <input class="form-control border border-primary" type="search" placeholder="Search" aria-label="Search" name="search_value">
-        <button class="btn btn-sm" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <form class="d-flex" role="search" action="{% url 'estore_search:search_view' %}" method="GET">
+          {% csrf_token %}
+        <input class="form-control border border-primary" type="search" placeholder="Search"  name="search_value">
+        <button class="btn btn-sm"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
       <ul class="navbar-nav mb-lg-0 ">
       <li class="nav-item ">
-        <a class="nav-link " aria-current="page" href=""><b><i class="fa-solid fa-bag-shopping"></i></b></a>
+        <a class="nav-link " aria-current="page" href="{% url 'estore_cart:cart_details' %}"><i class="fa-solid fa-bag-shopping">(<small style="color:">{{ quantity }}</small>)</i></a>
       </li>
       </ul>
     </div>
