@@ -13,20 +13,25 @@
 </head>
 <body>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<div class="container-fluid">
-    <div class="row">
-        {% include 'header.html' %}
-    </div>
-    <div class="row">
-        {% include 'nav.html' %}
-    </div>
-    <div class="container-fluid overflow-hidden">
-        {% block content %}
-        {% endblock %}
-    </div>
+<div class="container-fluid ">
+    <div class="wrapper">
+        <div>
+            {% include 'header.html' %}
+        </div>
+        <div>
+            {% include 'nav.html' %}
+        </div>
 
-    {% include 'footer.html' %}
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="footer">
+        {% include 'footer.html' %}
+    </div>
 </div>
+
 
 <script src="{% static 'js/popper.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>

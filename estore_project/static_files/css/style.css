@@ -1,7 +1,26 @@
-body{
-margin:0px;
+html, body{
+height: 100%;
+margin: 0;
+padding: 0;
 font-family: 'Roboto Condensed', sans-serif;
 }
+
+.wrapper {
+flex-direction: column;
+min-height: 100%;
+}
+
+.content{
+max-width: 82rem;
+min-height:25rem;               /* minimum height is set. so height will not be reduced below 25rem*/
+max-height:100%;
+overflow:hidden;
+}
+
+.head_img{
+width:100%;
+}
+
 
 .nav-item{
 font-size:15px;
@@ -18,21 +37,20 @@ font-size:15px;
 background-color: #ff6666;
 }
 
-.footer{
-background-color: #ff6666;
-height:100%;
-width:100%;
-padding:1%
 
+.footer {
+  width: 100%;
+  background-color: #ff6666;
+  padding: 10px;
 }
 
 /* category */
 
 .center {
-  display: block;
-  margin-left: 25%;
-  width: 50%;
-  height: 75%;
+
+width: 1324px;
+height: 300px;
+position:relative;
 }
 
 .card{                        /* common to all cards */

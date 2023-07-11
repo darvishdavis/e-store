@@ -11,8 +11,8 @@ CART
 {% block content %}
 <div class="row">
     {% if not items %}
-        <div class="text-center">
-            <h5>your bag feels lightweight. please go for your needs <br> <a class="btn btn-primary" href=" {% url 'estore_app1:home' %}">here</a></h5>
+        <div class="text-center my-5 py-5">
+            <h5>your bag feels lightweight. please go for your needs <br> <a class="btn btn-primary my-5" href=" {% url 'estore_app1:home' %}">here</a></h5>
         </div>
     {% else %}
         <div class=" col-12 col-lg-6 ">
@@ -25,7 +25,7 @@ CART
                 <tbody class="t-body">
                     {% for i in items %}
                         <tr>
-                            <td><a href="{{ i.product.get_url }}"><img class="cart_image" src="{{i.product.image.url}}" alt="{{i.product.name}}" style="width:10rem;height:10rem;"></a> </td>
+                            <td><img class="cart_image" src="{{i.product.image.url}}" alt="{{i.product.name}}" style="width:10rem;height:10rem;"> </td>
                             <td><b>{{i.product.name}} </b><br> <p class="text-sm">{{i.product.description}}</p> Rs.{{i.product.price}} <br>Offer : {{i.product.offer}}% <br>Quantity : {{i.quantity}}<br>
                             {% if i.quantity <= i.product.stock %}
                                 <div class="row">

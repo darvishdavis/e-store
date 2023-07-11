@@ -1,11 +1,10 @@
 {% extends 'home.html' %}
 {% load static %}
-{% if categories %}
-    {% block title %} {{categories.name}}+ Spot {% endblock%}
-{% else %}
-    <title>fresh-chase</title>
-{% endif %}
+
+{% block title %} FRESH-CHASE {% endblock%}
+
 {% block content %}
+
             {% if categories %}
                 <div class="col-12">
                     <img class="center" src="{{categories.image.url}}" alt="{{categories.name}}"> <br>
@@ -18,7 +17,7 @@
                     <br><p class="text-center text-uppercase fw-bold ">THESE ARE THE PRODUCT COLLECTION THAT WE PRESENT BEFORE YOU...............</p>
                 </div>
             {% endif %}
-            <div>
+            <div class="mx-4">
                 {% for i in products %}
                     <div class="card col-12 col-sm-6 col-md-4 col-lg-3 col-xl-6 float-start m-2" style="width: 12rem;">
                         <a href="{{ i.get_url }}"><img src="{{ i.image.url }}" class="card-img-top" alt="{{ i.name}}"></a>
@@ -28,8 +27,7 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div><br>
-
+            </div>
             <div class="col-12 float-end  text-center">
                 {% if pages.num_pages > 1 %}
                     {% for i in pages.page_range %}
@@ -38,4 +36,5 @@
                 {% endif %}
             </div>
 
-    {% endblock%}
+
+{% endblock%}
