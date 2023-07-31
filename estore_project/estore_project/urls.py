@@ -23,9 +23,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('estore_app1.urls')),
+    path('content/', include('estore_app1.urls')),
     path('search/', include('estore_search.urls')),
     path('cart/', include('estore_cart.urls')),
+    path('', include('estore_secure.urls')),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
               + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

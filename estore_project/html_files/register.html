@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+
+{% block title %}registration{% endblock %}
+
+{% block content %}
+
+<div class=" mx-5 px-5" >
+    <div class="d-flex justify-content-center my-2"><h4 class="text-dark "> Register Here</h4></div>
+    <form class=" mx-5 px-5 py-3 align-items-center" action='' method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+    <!--        <label for="exampleInputfname">First Name</label>-->
+            <input type="text" class="form-control" id="exampleInputfname" name="first_name" placeholder="First Name">
+
+        </div><br>
+
+        <div class="form-group">
+    <!--        <label for="exampleInputlname">Last Name</label>-->
+            <input type="text" class="form-control" id="exampleInputlname" name="last_name" placeholder="Last Name">
+        </div><br>
+
+        <div class="form-group">
+    <!--        <label for="exampleInputUser Name">User Name</label>-->
+            <input type="text" class="form-control" id="exampleInputUser Name" name="user_name" placeholder="User Name">
+        </div><br>
+
+        <div class="form-group">
+    <!--        <label for="exampleInputEmail1">Email address</label>-->
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Enter email">
+            <small id="emailHelp" class=" text-muted">We'll never share your email with anyone else.</small>
+        </div><br>
+
+        <div class="form-group">
+    <!--        <label for="exampleInputPassword1">Password</label>-->
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+        </div><br>
+
+        <div class="form-group">
+    <!--        <label for="exampleInputConfirmPassword">Confirm Password</label>-->
+            <input type="password" class="form-control" id="exampleInputConfirmPassword" name="re_password" placeholder="Confirm Password">
+        </div><br>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary ">Submit</button>
+        </div>
+    </form>
+</div>
+
+<div class="my-3 d-flex justify-content-center">
+    <h6> a fresh-chase user !!!; you can signin <a href="{% url 'estore_secure:login' %}" class="btn btn-danger" role="button">here.</a> FRESH-CHASE WELCOMES YOU </h6>
+</div>
+
+{% endblock %}

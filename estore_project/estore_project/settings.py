@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'estore_app1',
     'estore_search',
     'estore_cart',
+    'estore_secure',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,6 +73,8 @@ TEMPLATES = [
         },
     },
 ]
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 WSGI_APPLICATION = 'estore_project.wsgi.application'
 
