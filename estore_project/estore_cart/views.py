@@ -2,11 +2,18 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from estore_cart.models import Cart, CartItems
 from estore_app1.models import Product
+from django.conf import settings
+
 
 from django.core.exceptions import ObjectDoesNotExist
 
+import razorpay
+
+from estore_payment.models import Payment
+
 
 # Create your views here.
+
 
 def cart_id_creator(request):                                                     # method to create cart_id using session key to be used for creating cart
     cartid_sessionkey = request.session.session_key
@@ -40,16 +47,27 @@ def add_cart(request, product_id):                                              
         return HttpResponse("out of stock")
 
 
-def cart_details(request, total=0, counter=0, items=None):
+def cart_details(request, razorpay_amount=0, total=0, counter=0, items=None, order_id=None):
     try:
         bag = Cart.objects.get(cart_id=cart_id_creator(request))                # take already created cart
-        items = CartItems.objects.all().filter(cart=bag, active=True)           # retrieve all items in the existing cart into "items"
+        print(bag)
+        items = CartItems.objects.filter(cart=bag, active=True)           # retrieve all items in the existing cart into "items"
         for i in items:
             total += (i.quantity * i.product.price)                             # grand total
-            counter += i.quantity                                              # net quantity
+            counter += i.quantity                                               # net quantity
+        client = razorpay.Client(auth=(settings.KEY_ID, settings.KEY_SECRET))
+        razorpay_amount = int(total) * 100
+        data = {"amount": razorpay_amount, "currency": "INR", "receipt": "receipt-" + str(bag)}
+        payment = client.order.create(data=data)
+        print(payment)
+        order_id = payment['id']
+        order_status = payment['status']
+        if order_status == 'created':
+            payment_table_entry = Payment(user=request.user, amount=total, razorpay_order_id=order_id, razorpay_payment_status=order_status)
+            payment_table_entry.save()
     except ObjectDoesNotExist:
         pass
-    return render(request, 'cart.html', dict(total=total, counter=counter, items=items))
+    return render(request, 'cart.html', dict(razorpay_amount=razorpay_amount, total=total, counter=counter, items=items, order_id=order_id))
 
 
 def delete_onebyone(request, product_id):
