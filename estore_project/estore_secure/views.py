@@ -16,28 +16,33 @@ def register(request):
         confirm_password = request.POST['re_password']
 
         if User.objects.filter(username=username).exists():
-            messages.add_message(request, messages.ERROR, "username already exists, please change it!.")
+            messages.add_message(request, messages.ERROR, "Username already exists, please change it!.")
             print("username already exists")
 
         elif User.objects.filter(email=email).exists():
-            messages.add_message(request, messages.ERROR, "email taken, please provide another one!")
+            messages.add_message(request, messages.ERROR, "Email taken, please provide another one!")
             print("e-mail already exists")
 
+        elif not password or User.objects.filter(password=password):
+            messages.add_message(request, messages.ERROR, "A unique password is a must!!!")
+            print("password invalid")
+
         elif password != confirm_password:
-            messages.add_message(request, messages.ERROR, "password didn't match")
+            messages.add_message(request, messages.ERROR, "Password didn't match!")
             print("password invalid")
 
         else:
             user = User.objects.create_user(username=username, first_name=firstname, last_name=lastname,
                                             email=email, password=password)
             user.save()
-            messages.add_message(request, messages.SUCCESS, 'you are registerd !')
+            messages.add_message(request, messages.SUCCESS, ' Registered !')
             return redirect('estore_app1:home')
 
     return render(request, 'register.html')
 
 
 def log_in(request):
+    user = None
     if request.method == 'POST':
         user_name = request.POST['username']
         password = request.POST['password']

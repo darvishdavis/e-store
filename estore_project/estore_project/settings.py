@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'estore_cart',
     'estore_secure',
     'estore_payment',
-    'razorpay_file',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,8 +137,8 @@ MEDIA_ROOT = "D:\Inmakes_python\python_django\django\e-store\estore_project\medi
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Payment integration using RAZORPAY
 KEY_ID = 'rzp_test_z4XEKO0gCN7g4F'
 KEY_SECRET = 'Z1F2sWZ7Z99dvmNyBcQz1mhP'

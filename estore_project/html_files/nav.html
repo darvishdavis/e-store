@@ -1,4 +1,4 @@
-{% if user %}
+{% if user.is_authenticated %}
 
 <nav  class=" navbar-expand-lg  navbar border-bottom border" style="background-color: #ff6666;">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,16 +28,29 @@
           {% endfor %}
 
       </ul>
+
+      <ul class="navbar-nav mb-lg-0 ">
+
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"><b>{{request.user}}</b></a>
+          <ul class="dropdown-menu">
+             <li><a class="dropdown-item" href="{% url 'estore_secure:logout' %}">LogOut</a></li>
+            <li><a class="dropdown-item" href="{% url 'estore_secure:register' %}">New Registration</a></li>
+             <li><a class="dropdown-item" href="">Settings</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link " aria-current="page" href="{% url 'estore_cart:cart_details' %}"><i class="fa-solid fa-bag-shopping">(<small style="color:">{{ quantity }}</small>)</i></a>
+        </li>
+
+      </ul>
+
         <form class="d-flex" role="search" action="{% url 'estore_search:search_view' %}" method="GET">
           {% csrf_token %}
         <input class="form-control border border-primary" type="search" placeholder="Search"  name="search_value">
         <button class="btn btn-sm"><i class="fa-solid fa-magnifying-glass"></i></button>
       </form>
-      <ul class="navbar-nav mb-lg-0 ">
-      <li class="nav-item ">
-        <a class="nav-link " aria-current="page" href="{% url 'estore_cart:cart_details' %}"><i class="fa-solid fa-bag-shopping">(<small style="color:">{{ quantity }}</small>)</i></a>
-      </li>
-      </ul>
     </div>
 </nav>
 
